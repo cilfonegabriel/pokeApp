@@ -1,31 +1,42 @@
-import  { Request, Response } from 'express';
+import { Request, Response } from 'express';
 import axios, { AxiosResponse } from 'axios';
 
-const POKEAPI_BASE_URL: string =  'https://pokeapi.co/api/v2';
-
-
-export const pokemonListRouter = async (req: Request , res: Response) => {
-    try {
-        const response = await axios.get(`${POKEAPI_BASE_URL}/pokemon?offset&limit=60`)
-        const data = response.data.results.slice(0,60);
-    
-
-        const pokemonList = [];
-        for (const item of data) {
-            const { data: pokemonData } : AxiosResponse = await axios.get(item.url);
-
-            const pokemon = {
-                id: pokemonData.id,
-                name: pokemonData.name,
-                image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonData.id}.png`
-            };
-
-            pokemonList.push(pokemon);
-        }
-
-        res.json(pokemonList);
-    } catch (error) {
-        console.log(error);
-    }
+interface PokemonData {
+    id: number;
+    name: string;
+    url: string;
 }
 
+interface Pokemon {
+    id: number;
+    name: string;
+    image: string;
+    type: string;
+}
+
+const baseUrl: string = 'https://pokeapi.co/api/v2';
+
+//Llamar solo 100 pokemones.
+export const pokemonListRouter = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const response: AxiosResponse = await axios.get(`${baseUrl}/pokemon?offset=0&limit=15`);
+        const pokemonDataList: PokemonData[] = response.data.results;
+
+        const pokemonObject: { [key: string]: Pokemon } = {};
+
+        for (const item of pokemonDataList) {
+            const { data: pokemonData }: AxiosResponse = await axios.get(item.url);
+            const type: string = pokemonData.types[0].type.name; // Acceder al primer tipo
+            const pokemon: Pokemon = {
+                id: pokemonData.id,
+                name: pokemonData.name,
+                type: type,
+                image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonData.id}.png`
+            };
+            pokemonObject[pokemon.name] = pokemon;
+        }
+        res.json(pokemonObject);
+    } catch (error) {
+        console.error(error);
+    }
+};
