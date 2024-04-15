@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import axios, { AxiosResponse } from 'axios';
+import { Request, Response, NextFunction } from 'express';
+import axios, { AxiosResponse, AxiosError } from 'axios';
 
 interface Stat {
     base_stat: number;
@@ -26,10 +26,16 @@ interface Pokemon {
 
 const baseUrl = 'https://pokeapi.co/api/v2';
 
-export const getPokemonById = async (req: Request, res: Response) => {
+export const getPokemonById = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const id = req.params.id;
         const response: AxiosResponse<Pokemon> = await axios.get(`${baseUrl}/pokemon/${id}`);
+        
+        // Verificar si la respuesta tiene datos
+        if (!response.data) {
+            res.status(404).json({ message: 'Pokémon not found' });
+            return;
+        }
 
         const pokemonData: Pokemon = response.data;
 
@@ -50,8 +56,15 @@ export const getPokemonById = async (req: Request, res: Response) => {
             type: pokemonData.type
         };
 
-        res.json(pokemon);
+        res.json({data : pokemon});
     } catch (error) {
-        console.log(error);
+        // Manejar el error de la solicitud Axios
+        const axiosError = error as AxiosError;
+        if (axiosError.response && axiosError.response.status === 404) {
+            res.status(404).json({ message: 'Pokémon not found' });
+        } else {
+            console.error(error);
+            next(error); // Pasar el error al siguiente middleware de manejo de errores
+        }
     }
 };
