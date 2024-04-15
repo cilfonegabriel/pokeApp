@@ -19,14 +19,14 @@ const baseUrl: string = 'https://pokeapi.co/api/v2';
 //Llamar solo 100 pokemones.
 export const pokemonListRouter = async (req: Request, res: Response): Promise<void> => {
     try {
-        const response: AxiosResponse = await axios.get(`${baseUrl}/pokemon?offset=0&limit=15`);
+        const response: AxiosResponse = await axios.get(`${baseUrl}/pokemon?offset=0&limit=100`);
         const pokemonDataList: PokemonData[] = response.data.results;
 
         const pokemonObject: { [key: string]: Pokemon } = {};
 
         for (const item of pokemonDataList) {
             const { data: pokemonData }: AxiosResponse = await axios.get(item.url);
-            const type: string = pokemonData.types[0].type.name; // Acceder al primer tipo
+            const type: string = pokemonData.types[0].type.name;
             const pokemon: Pokemon = {
                 id: pokemonData.id,
                 name: pokemonData.name,
