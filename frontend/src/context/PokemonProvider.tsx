@@ -4,7 +4,6 @@ import { PokemonContext } from "./PokemonContext"
 interface Pokemon {
     id: number;
     name: string;
-    // Define el resto de las propiedades del Pokemon aquí
 }
 
 interface PokemonProviderProps {
