@@ -29,7 +29,10 @@ export const PokemonProvider = ({ children }: PokemonProviderProps) => {
         const res = await fetch(`${baseUrl}api/pokemon/?limit=${limit}&offset=${offset}`);
         const results = await res.json()
 
-        setAllPokemons(results) 
+        setAllPokemons([
+            ...allPokemons,
+            ...results
+        ]) 
         setLoading(false)
     }
 
