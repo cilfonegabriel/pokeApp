@@ -1,13 +1,12 @@
+import { useContext } from 'react';
 import { Outlet, Link } from 'react-router-dom';
+import { PokemonContext } from '../context/PokemonContext';
 
 const Navigation = () => {
-  const onSearchSubmit = () => {
-    // Agrega aquí la lógica para manejar la búsqueda
-  };
 
-  const onInputChange = () => {
-    // Agrega aquí la lógica para manejar el cambio en el input
-  };
+  const {} =useContext(PokemonContext)
+
+
 
   return (
     <>
@@ -20,7 +19,7 @@ const Navigation = () => {
           />
         </Link>
 
-        <form onSubmit={onSearchSubmit} className='flex items-center gap-4'>
+        <form  className='flex items-center gap-4'>
           <div className='form-group flex items-center gap-2 border border-gray-400 px-4 py-2 rounded-lg'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -38,7 +37,6 @@ const Navigation = () => {
             <input
               type='search'
               name='valueSearch'
-              onChange={onInputChange}
               placeholder='Buscar nombre de pokemon'
               className='w-72 py-2 px-2 outline-none text-gray-800 rounded-lg'
             />
