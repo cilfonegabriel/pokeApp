@@ -17,7 +17,7 @@ interface Pokemon {
 
 const baseUrl: string = 'https://pokeapi.co/api/v2';
 
-export const pokemonListRouter = async (req: Request, res: Response): Promise<void> => {
+export const ListPokemon = async (req: Request, res: Response): Promise<void> => {
     try {
         const response: AxiosResponse = await axios.get(`${baseUrl}/pokemon?offset=0&limit=20`);
         const pokemonDataList: PokemonData[] = response.data.results;

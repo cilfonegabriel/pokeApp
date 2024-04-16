@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { pokemonListRouter } from "./handlers/pokemonsRoute";
-import { getPokemonById } from "./handlers/pokemonDetails";
+import { ListPokemon } from "./controllers/PokemonsController";
+import { PokemonById } from "./controllers/DetailsController";
 import { errorHandler } from "./middlewares/errorHandler";
 
 const router = Router();
@@ -116,7 +116,7 @@ const router = Router();
  *                     $ref: '#/components/schemas/Pokemon'
  */
 
-router.get('/api/pokemon', pokemonListRouter)  
-router.get('/api/pokemon/:id' ,errorHandler, getPokemonById);
+router.get('/api/pokemon', ListPokemon)  
+router.get('/api/pokemon/:id' ,errorHandler, PokemonById);
 
 export default router;

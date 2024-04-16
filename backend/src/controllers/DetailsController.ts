@@ -26,7 +26,7 @@ interface Pokemon {
 
 const baseUrl = 'https://pokeapi.co/api/v2';
 
-export const getPokemonById = async (req: Request, res: Response, next: NextFunction) => {
+export const PokemonById = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const id = req.params.id;
         const response: AxiosResponse<Pokemon> = await axios.get(`${baseUrl}/pokemon/${id}`);
