@@ -19,7 +19,11 @@ const baseUrl: string = 'https://pokeapi.co/api/v2';
 
 export const ListPokemon = async (req: Request, res: Response): Promise<void> => {
     try {
-        const response: AxiosResponse = await axios.get(`${baseUrl}/pokemon?offset=0&limit=100`);
+        const limit = typeof req.query.limit === 'string' ? parseInt(req.query.limit) : 200;
+        const offset = typeof req.query.offset === 'string' ? parseInt(req.query.offset) : 0;
+        
+
+        const response: AxiosResponse = await axios.get(`${baseUrl}/pokemon?offset=${offset}&limit=${limit}`);
         const pokemonDataList: PokemonData[] = response.data.results;
 
         const pokemonObject: { [key: number]: Pokemon } = {};
