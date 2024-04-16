@@ -1,11 +1,5 @@
+import AppRouter from "./AppRouter"
 
-function App() {
-
-  return (
-    <>
-      <h1 className="text-6xl">Hola Mundo</h1>
-    </>
-  )
+export default function App() {
+  return <AppRouter />
 }
-
-export default App
