@@ -11,7 +11,7 @@ interface Pokemon {
     id: number;
     name: string;
     image: string;
-    type: string;
+    type: string[];
 }
 
 
@@ -31,10 +31,11 @@ export const ListPokemon = async (req: Request, res: Response): Promise<void> =>
         for (const item of pokemonDataList) {
             const { data: pokemonData }: AxiosResponse = await axios.get(item.url);
             const type: string[] = pokemonData.types.map((type: { type: { name: string } }) => type.type.name);
+            
             const pokemon: Pokemon = {
                 id: pokemonData.id,
                 name: pokemonData.name,
-                type: type.join(', '),
+                type: type,
                 image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonData.id}.png`
             };
             pokemonObject[pokemon.id] = pokemon;
