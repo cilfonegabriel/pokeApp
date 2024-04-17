@@ -1,4 +1,5 @@
 import { useEffect, useState, ReactNode } from "react"
+import {useForm} from "../hook/useForm"
 import { PokemonContext } from "./PokemonContext"
 
 interface Pokemon {
@@ -10,12 +11,20 @@ interface PokemonProviderProps {
     children: ReactNode;
 }
 
+interface FormState {
+    valueSearch: string;
+}
+
 export const PokemonProvider = ({ children }: PokemonProviderProps) => {
 
     const [allPokemons, setAllPokemons] = useState<Pokemon[]>([])
     const [globalAllPokemons, setGlobalAllPokemons] = useState<Pokemon[]>([])
 
     const [offset, setOffset] = useState(0)
+
+    const {formState: { valueSearch }, onInputChange, onResetForm} = useForm({
+        valueSearch: ''
+    })
 
     //Estados simples
     const [loading, setLoading] = useState(true)
@@ -65,7 +74,9 @@ export const PokemonProvider = ({ children }: PokemonProviderProps) => {
 
     return (
         <PokemonContext.Provider value={{
-            numero:0
+            valueSearch,
+            onInputChange,
+            onResetForm
         }} >
             {children}
         </PokemonContext.Provider>
