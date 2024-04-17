@@ -2,7 +2,7 @@
 const FilterBar = () => {
   return (
     <div>
-      Desde la filerBar
+      Desde la filter
     </div>
   )
 }
