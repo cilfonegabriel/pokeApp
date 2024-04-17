@@ -11,7 +11,6 @@ export const PokemonList = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 container mx:auto">
                 {allPokemons.map(pokemon => <CardPokemon pokemon={pokemon} key={pokemon.id}/>)}
             </div>
-        Desde pokemonList
         </>
     )
 }
