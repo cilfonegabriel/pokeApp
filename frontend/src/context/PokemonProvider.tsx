@@ -11,10 +11,6 @@ interface PokemonProviderProps {
     children: ReactNode;
 }
 
-interface FormState {
-    valueSearch: string;
-}
-
 export const PokemonProvider = ({ children }: PokemonProviderProps) => {
 
     const [allPokemons, setAllPokemons] = useState<Pokemon[]>([])
@@ -76,7 +72,10 @@ export const PokemonProvider = ({ children }: PokemonProviderProps) => {
         <PokemonContext.Provider value={{
             valueSearch,
             onInputChange,
-            onResetForm
+            onResetForm,
+            allPokemons,
+            globalAllPokemons,
+            getPokemonById
         }} >
             {children}
         </PokemonContext.Provider>
