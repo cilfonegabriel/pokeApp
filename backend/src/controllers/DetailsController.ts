@@ -22,6 +22,7 @@ interface Pokemon {
     weight: number;
     stats: Stat[];
     type: Type;
+    image: string;
 }
 
 const baseUrl = 'https://pokeapi.co/api/v2';
@@ -51,7 +52,9 @@ export const PokemonById = async (req: Request, res: Response, next: NextFunctio
             height: pokemonData.height,
             weight: pokemonData.weight,
             stats: stats,
-            type: pokemonData.type
+            type: pokemonData.type,
+            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonData.id}.png`
+
         };
 
         res.json({data : pokemon});
