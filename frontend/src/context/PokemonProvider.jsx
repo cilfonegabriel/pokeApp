@@ -10,7 +10,7 @@ export const PokemonProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [active, setActive] = useState(false);
   
-    const getAllPokemons = async (limit = 50) => {
+    const getAllPokemons = async (limit = 20) => {
         const baseUrl = 'http://localhost:4000/';
         try {
           const res = await fetch(`${baseUrl}api/pokemon/?limit=${limit}&offset=${offset}`);
@@ -19,7 +19,7 @@ export const PokemonProvider = ({ children }) => {
           console.log(results);
           
 
-        setAllPokemons(results);
+        setAllPokemons([...allPokemons, ...results]);;
           setLoading(false);
         } catch (error) {
           console.error('Error fetching Pokemon data:', error);
@@ -49,11 +49,15 @@ export const PokemonProvider = ({ children }) => {
   
     useEffect(() => {
       getAllPokemons();
-    }, []);
+    }, [offset]);
   
     useEffect(() => {
       globalgetAllPokemons();
     }, []);
+
+    const onClickLoadMore = () => {
+      setOffset(offset + 20);
+    };
 
     return (
       <PokemonContext.Provider value={{
@@ -62,7 +66,12 @@ export const PokemonProvider = ({ children }) => {
         onResetForm,
         allPokemons,
         globalAllPokemons,
-        getPokemonById
+        getPokemonById,
+        onClickLoadMore,
+        loading,
+        setLoading,
+        active,
+        setActive
       }} >
         {children}
       </PokemonContext.Provider>
