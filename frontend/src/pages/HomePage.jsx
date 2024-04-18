@@ -24,10 +24,14 @@ const HomePage = () => {
                     <span>Filtrar</span>
                 </div>
             </div>
-            <div className="container mx-auto px-4 sm:px-6 md:px-8">
                 <PokemonList />
                 <FilterBar />
-            </div>
+                
+                <div className="flex justify-center mb-20 mt-20 max-w-7xl mx-auto">
+                    <button className="bg-green-500 text-white rounded-lg py-3 px-10 border-none cursor-pointer" onClick={onClickLoadMore}>
+                        Cargar más
+                    </button>
+                </div>
         </>
     );
 };
