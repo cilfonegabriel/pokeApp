@@ -19,7 +19,7 @@ const baseUrl: string = 'https://pokeapi.co/api/v2';
 
 export const ListPokemon = async (req: Request, res: Response): Promise<void> => {
     try {
-        const limit = typeof req.query.limit === 'string' ? parseInt(req.query.limit) : 200;
+        const limit = typeof req.query.limit === 'string' ? parseInt(req.query.limit) : 60;
         const offset = typeof req.query.offset === 'string' ? parseInt(req.query.offset) : 0;
         
 
