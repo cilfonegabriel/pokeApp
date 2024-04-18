@@ -19,20 +19,26 @@ export const PokemonProvider = ({ children }) => {
           console.log(results);
           
 
-          setAllPokemons([...allPokemons, ...results]);
+        setAllPokemons(results);
           setLoading(false);
         } catch (error) {
           console.error('Error fetching Pokemon data:', error);
         }
       }
   
-    const globalgetAllPokemons = async () => {
-      const baseUrl = 'http://localhost:4000/';
-      const res = await fetch(`${baseUrl}api/pokemon`);
-      const results = await res.json();
-      setGlobalAllPokemons(results);
-      setLoading(false);
-    }
+      const globalgetAllPokemons = async () => {
+        const baseUrl = 'http://localhost:4000/';
+        try {
+          const res = await fetch(`${baseUrl}api/pokemon`);
+          const { data: pokemonData } = await res.json();
+          const results = Object.values(pokemonData);
+          console.log(results);
+          setGlobalAllPokemons(results);
+          setLoading(false);
+        } catch (error) {
+          console.error('Error fetching all Pokemon data:', error);
+        }
+      }
   
     const getPokemonById = async (id) => {
       const baseUrl = 'http://localhost:4000/';
@@ -48,7 +54,7 @@ export const PokemonProvider = ({ children }) => {
     useEffect(() => {
       globalgetAllPokemons();
     }, []);
-  
+
     return (
       <PokemonContext.Provider value={{
         valueSearch,
