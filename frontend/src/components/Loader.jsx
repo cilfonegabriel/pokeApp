@@ -1,4 +1,6 @@
-import 'ldrs/dotSpinner'
+import {dotSpinner} from 'ldrs/dist/dotSpinner.js';
+
+dotSpinner.register()
 
 const Loader = () => {
   return (
@@ -9,9 +11,6 @@ const Loader = () => {
         color="black" 
       ></l-dot-spinner>
     </div>
-
-
   )
 }
-
 export default Loader;
