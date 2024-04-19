@@ -19,7 +19,7 @@ import { PokemonContext } from '../context/PokemonContext';
 
   return (
     <>
-      <header className='container mx-auto flex items-center justify-between py-10'>
+      <header className='container mx-40 flex items-center justify-between py-10'>
         <Link to='/' className='logo'>
           <img
             src='https://archives.bulbagarden.net/media/upload/4/4b/Pok%C3%A9dex_logo.png'
