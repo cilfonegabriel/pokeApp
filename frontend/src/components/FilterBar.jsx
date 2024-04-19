@@ -15,7 +15,7 @@ const FilterBar = () => {
     // Función para renderizar los elementos de tipo de Pokémon
     const renderPokemonTypes = () => {
         return pokemonTypes.map((type) => (
-            <div className='group-type' key={type}>
+            <div className="flex gap-10 ml-15 mx-5" key={type}>
                 <input
                     type='checkbox'
                     onChange={handleCheckbox}
@@ -28,12 +28,14 @@ const FilterBar = () => {
     };
 
     return (
-      <div className={`container-filters ${active ? 'active' : ''} fixed top-0 left-0 w-40 bg-gray-200 h-full overflow-y-auto pt-32 transition-all duration-300`}>
-      <div className='filter-by-type text-base'>
-                <span>Tipo</span>
+    <div className={`fixed top-0 left-0 w-40 bg-gray-200 h-full overflow-y-auto pt-32 transition-all duration-500 ${active ? 'active-class' : ''}`}>
+      <div className='flex flex-col gap-20" text-base'>
+             <span className="flex flex-col gap-20 text-base mx-10 font-bold">
+                Tipo
+            </span>
                 {renderPokemonTypes()}
-            </div>
         </div>
+    </div>
     );
 };
 
