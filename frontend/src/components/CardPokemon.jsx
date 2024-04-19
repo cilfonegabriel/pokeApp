@@ -42,17 +42,17 @@ const getTypeColorClass = (type) => {
       case 'water':
           return 'bg-blue-900';
       case 'flying':
-          return 'bg-blue-800'; // Azul oscuro para tipo flying
+          return 'bg-blue-800';
       case 'bug':
-          return 'bg-green-500'; // Verde oscuro para tipo bug
+          return 'bg-green-500';
       case 'normal':
-          return 'bg-black'; // Negro para tipo normal
+          return 'bg-black';
       case 'electric':
           return 'bg-yellow-500';
       case 'ground':
-            return 'bg-gray-500'; // Gris para tipo ground // Amarillo fuerte para tipo electric
+            return 'bg-gray-500';
       case 'fairy':
-          return 'bg-orange-500'; // Naranja para tipo fairy
+          return 'bg-orange-500';
       default:
           return 'bg-gray-500';
   }

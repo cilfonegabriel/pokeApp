@@ -21,9 +21,7 @@ export const PokemonProvider = ({ children }) => {
           const res = await fetch(`${baseUrl}api/pokemon/?limit=${limit}&offset=${offset}`);
           const { data: pokemonData } = await res.json();
           const results = Object.values(pokemonData);
-          console.log(results);
           
-
         setAllPokemons([...allPokemons, ...results]);;
           setLoading(false);
         } catch (error) {
@@ -37,7 +35,6 @@ export const PokemonProvider = ({ children }) => {
           const res = await fetch(`${baseUrl}api/pokemon`);
           const { data: pokemonData } = await res.json();
           const results = Object.values(pokemonData);
-          console.log(results);
           setGlobalAllPokemons(results);
           setLoading(false);
         } catch (error) {
@@ -99,7 +96,6 @@ export const PokemonProvider = ({ children }) => {
         const filteredResults = globalAllPokemons.filter(pokemon =>
             pokemon.type.includes(e.target.name)
         );
-        console.log(filteredResults)
         setFilteredPokemons([...filteredPokemons, ...filteredResults]);
     } else {
         const filteredResults = filteredPokemons.filter(
