@@ -4,19 +4,19 @@ import FilterBar from '../components/FilterBar';
 import { PokemonContext } from '../context/PokemonContext';
 
 const HomePage = () => {
+    const { onClickLoadMore, active, setActive } = useContext(PokemonContext);
 
-    const { onClickLoadMore } = useContext(PokemonContext)
     return (
         <>
-            <div className="container-filter container">
-                <div className="icon-filter flex items-center gap-3 mb-5 cursor-pointer">
+            <div className="flex items-center max-w-7xl mx-40">
+                <div className="flex items-center gap-15 mb-20 cursor-pointer" onClick={() => setActive(!active)}>
                     <svg
+                        className= "w-6 h-6 text-gray-500"
                         xmlns='http://www.w3.org/2000/svg'
-                        fill='none'
-                        viewBox='0 0 24 24'
-                        strokeWidth='1.5'
-                        stroke='currentColor'
-                        className='icon w-8 h-8'
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
                     >
                         <path
                             strokeLinecap='round'
@@ -28,13 +28,14 @@ const HomePage = () => {
                 </div>
             </div>
                 <PokemonList />
-                <FilterBar />
-                
-                <div className="flex justify-center mb-20 mt-20 max-w-7xl mx-auto">
-                    <button className="bg-green-500 text-white rounded-lg py-3 px-10 border-none cursor-pointer" onClick={onClickLoadMore}>
-                        Cargar más
-                    </button>
-                </div>
+
+            {active && <FilterBar />}
+            
+            <div className="flex justify-center mb-20 mt-20 max-w-7xl mx-auto">
+                <button className="bg-green-500 text-white rounded-lg py-3 px-10 border-none cursor-pointer" onClick={onClickLoadMore}>
+                    Cargar más
+                </button>
+            </div>
         </>
     );
 };
