@@ -9,8 +9,6 @@ const Loader = () => {
         color="black" 
       ></l-dot-spinner>
     </div>
-
-
   )
 }
 
