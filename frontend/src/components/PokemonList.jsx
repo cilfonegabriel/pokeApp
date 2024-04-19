@@ -13,7 +13,7 @@ export const PokemonList = () => {
                 loading ? (
                     <Loader />
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 mx-10 md:grid-cols-3 lg:grid-cols-4 gap-4 container mx:aut0o">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:mx-auto md:grid-cols-3 lg:grid-cols-4  gap-4 container mx:auto">
                         {
                             filteredPokemons.length ? (
 

@@ -5,7 +5,7 @@ export const CardPokemon = ({ pokemon }) => {
     return (
         <Link 
           to={`/pokemon/${pokemon.id}`} 
-          className='bg-white shadow-lg rounded-lg overflow-hidden card-pokemon hover:shadow-xl transition duration-300 ease-in-out'
+          className='bg-white shadow-lg rounded-lg overflow-hidden card-pokemon hover:shadow-xl transition duration-300'
         >
             <div className='bg-gray-200 flex items-center justify-center rounded-t-lg h-48 w-full'>
                 <img

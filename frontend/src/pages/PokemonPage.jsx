@@ -32,7 +32,7 @@ const PokemonPage = () => {
       ) : (
         <>
           <div className="mt-10 lg:mt-20 flex flex-col mx-auto lg:flex-row items-center relative">
-            <span className="absolute top-0 left-0 -mt-20 lg:-mt-0 text-6xl font-bold text-primary-hover">
+          <span className="absolute top-0 left-0 -mt-10 lg:-mt-0 text-4xl md:text-5xl lg:text-6xl font-bold text-primary-hover">
               #{pokemon.id}
             </span>
             <div className="order-2 flex-shrink-0 p-6 pr-0 lg:h-50">

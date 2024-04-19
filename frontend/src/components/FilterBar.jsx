@@ -16,7 +16,8 @@ const FilterBar = () => {
     // Función para renderizar los elementos de tipo de Pokémon
     const renderPokemonTypes = () => {
         return pokemonTypes.map((type) => (
-            <div className="flex gap-1 ml-15" key={type}>
+            <div className="flex md:flex-row items-center md:items-start gap-1 ml-0 md:ml-15" key={type}>
+
                 <input
                     type='checkbox'
                     onChange={handleCheckbox}
