@@ -26,12 +26,12 @@ const PokemonPage = () => {
   console.log(pokemon)
 
   return (
-    <main className="flex flex-col items-center justify-center mb-10 lg:mb-50 px-4">
+    <main className="flex flex-col items-center justify-center mx-auto mb-10 lg:mb-50 px-4">
       {loading ? (
         <Loader />
       ) : (
         <>
-          <div className="mt-10 lg:mt-20 flex flex-col lg:flex-row items-center relative">
+          <div className="mt-10 lg:mt-20 flex flex-col mx-auto lg:flex-row items-center relative">
             <span className="absolute top-0 left-0 -mt-20 lg:-mt-0 text-6xl font-bold text-primary-hover">
               #{pokemon.id}
             </span>
